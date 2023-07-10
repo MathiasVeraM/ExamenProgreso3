@@ -1,9 +1,6 @@
 #include <stdio.h> //Se incluye la biblioteca stdio.h y la creacion de funcion main
-float Promedio(float x, float y, float z){
-    float resultado;
-    resultado = (x+y+z)/3;
-    return resultado;
-}
+#include <stdlib.h>
+#include <string.h>
 struct alumnos{
         int numero;
         char NombreApellido [30];
@@ -12,7 +9,15 @@ struct alumnos{
         float nota2;
         float nota3;
         float promedio;
-    }alumnos;
+}alumnos;
+
+float Promedio(float x, float y, float z){
+    float resultado;
+    resultado = (x+y+z)/3;
+    return resultado;
+}
+
+
 int main(){
     struct alumnos alumnos;    
 
@@ -34,8 +39,10 @@ int main(){
         switch (opcion){
             case 1: printf("\nLos datos leidos se imprimiran a continuacion: \n");
                 while(!feof(archivo)){
-                    while(fscanf(archivo, "%d %s %s %f %f %f", &alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3) != EOF){
+                    while(fscanf(archivo, "%d %s %s %f %f %f\n", &alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3) != EOF){
                         printf("%d %s %s %f %f %f\n", alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3);
+                        alumnos.promedio = Promedio(alumnos.nota1, alumnos.nota2, alumnos.nota3);
+                        fprintf(archivonuevo, "%d %s %s %f %f %f %f\n", alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, alumnos.promedio);
                         fflush(archivo);
                     }
                 }

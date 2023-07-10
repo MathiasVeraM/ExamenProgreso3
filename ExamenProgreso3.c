@@ -17,13 +17,15 @@ int main(){
     archivo = fopen("alumnos.txt","r");
     archivonuevo = fopen("Alumnosinvertidos.txt","a+");
     int mayor = 0;
+    float promedio = 0;
 
     while(!feof(archivo)){
         fscanf(archivo, "%d %s %s %f %f %f", &alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3);
         if(alumnos.numero>mayor){
             mayor = alumnos.numero;
         }
-        fprintf(archivonuevo, "%d; %s; %s; %f; %f; %f\n", mayor, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3);
+        promedio = Promedio(alumnos.nota1,alumnos.nota2,alumnos.nota3);
+        fprintf(archivonuevo, "%d; %s; %s; %f; %f; %f; %f\n", mayor, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, promedio);
     }
 
 

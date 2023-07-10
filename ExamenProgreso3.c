@@ -1,4 +1,7 @@
 #include <stdio.h> //Se incluye la biblioteca stdio.h y la creacion de funcion main
+float Promedio(float x, float y, float z){
+    return (x+y+z)/3;
+}
 int main(){
     struct alumnos{
         int numero;
@@ -10,12 +13,17 @@ int main(){
         float promedio;
     }alumnos;
 
-    FILE *archivo;
+    FILE *archivo, *archivonuevo;
     archivo = fopen("alumnos.txt","r");
+    archivonuevo = fopen("Alumnosinvertidos.txt","a+");
+    int mayor = 0;
 
     while(!feof(archivo)){
         fscanf(archivo, "%d %s %s %f %f %f", &alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3);
-
+        if(alumnos.numero>mayor){
+            mayor = alumnos.numero;
+        }
+        fprintf(archivonuevo, "%d; %s; %s; %f; %f; %f\n", mayor, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3);
     }
 
 

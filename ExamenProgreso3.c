@@ -18,17 +18,33 @@ int main(){
     archivo = fopen("alumnos.txt","r");
     archivonuevo = fopen("AlumnosConPromedio.txt","a+");
     int mayor = 0;
-    float promedio = 0;
+    int opcion = 0;
 
-    do{
-        fscanf(archivo, "%d %s %s %f %f %f", alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3);
-        alumnos.promedio = Promedio(alumnos.nota1,alumnos.nota2,alumnos.nota3);
-        fflush(archivo);
-    } while (!feof(archivo));
+    printf("Menu:\n");
+    printf("\n1.Leer los datos, \n2.Escribir los datos en nuevo archivo, \n3.Salir\n");
+    printf("\nIngrese una opcion del menu: ");
+    scanf("%d", &opcion);
 
-    printf("%d; %s %s; %f; %f; %f; %f\n", alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, alumnos.promedio);
-    fprintf(archivonuevo, "%d; %s %s; %f; %f; %f; %f\n", alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, alumnos.promedio);
-    printf("\nSe imprimieron los datos con exito\n");
+    switch (opcion){
+    case 1: printf("\nLos datos leidos se imprimiran a continuacion: \n");
+            while(fscanf(archivo, "%d %s %s %f %f %f", alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3) != EOF){
+            printf("%d %s %s %f %f %f", alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3);
+            fflush(archivo);
+            }
+        break;
+    case 2: printf("\nSe imprimieron los datos con exito\n");
+            while(fscanf(archivo, "%d %s %s %f %f %f", alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3) != EOF){
+            alumnos.promedio = Promedio(alumnos.nota1, alumnos.nota2, alumnos.nota3);
+            fprintf(archivonuevo, "%d %s %s %f %f %f", alumnos.numero, &alumnos.NombreApellido, &alumnos.Carrera, &alumnos.nota1, &alumnos.nota2, &alumnos.nota3);
+            fflush(archivo);
+            }
+    case 3: printf("\nSalio con exito del programa!\n");
+            break;
+    default: printf("\nIngrese una opcion valida\n");
+        break;
+    }
+
+    
     fclose(archivo);
     fclose(archivonuevo);
     

@@ -24,11 +24,12 @@ int main(){
         if(alumnos.numero>mayor){
             mayor = alumnos.numero;
         }
-        promedio = Promedio(alumnos.nota1,alumnos.nota2,alumnos.nota3);
-        fprintf(archivonuevo, "%d; %s; %s; %f; %f; %f; %f\n", mayor, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, promedio);
+        alumnos.promedio = Promedio(alumnos.nota1,alumnos.nota2,alumnos.nota3);
+        fprintf(archivonuevo, "%d; %s; %s; %f; %f; %f; %f\n", alumnos.numero, alumnos.NombreApellido, alumnos.Carrera, alumnos.nota1, alumnos.nota2, alumnos.nota3, alumnos.promedio);
     }
 
-
-
+    fclose(archivo);
+    fclose(archivonuevo);
+    
     return 0;
 }
